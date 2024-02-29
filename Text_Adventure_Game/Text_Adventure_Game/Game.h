@@ -7,7 +7,8 @@
 		south,
 		east,
 		west,
-		quit
+		quit,
+		nul
 	};
 
 

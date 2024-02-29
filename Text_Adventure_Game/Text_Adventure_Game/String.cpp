@@ -8,6 +8,7 @@ String::String()
 	str = nullptr;
 	str = new char[1];
 	str[0] = '\0';
+	
 }
 
 String::String(const char* _str)
@@ -24,15 +25,19 @@ String::String(const char* _str)
 String::String(const String& _other)
 {
 	// copy string into char* array
-	int size = (int)strlen(_other.str);
+	long size = (long)strlen(_other.str);
 	str = new char[size + 1];
 	memcpy(str, _other.str, size + 1);
 }
 
 String::~String()
 {
-	delete str;
-	str = nullptr;
+	if (str != nullptr)
+	{
+		delete[] str;
+		str = nullptr;
+	}
+	
 }
 
 size_t String::Length() const
@@ -176,12 +181,20 @@ String& String::Replace(const String& _find, const String& _replace)
 String& String::ReadFromConsole()
 {
 	//get the user input and input it into the char array
+	
+	const size_t maxInputSize = 100;
 	string input;
 	getline(cin, input);
-	char* newStr = new char[input.length() + 1];
-	strcpy_s(newStr, strlen(newStr + 1), input.c_str());
-	str = newStr;
+	if (input.size() > maxInputSize)
+	{
+		cout << "Please input a valid string" << endl;
+		input = "";
+		getline(cin, input);
+	}
+	
+	*str = *input.c_str();
 	return *this;
+	
 }
 
 String& String::WriteToConsole()
@@ -205,10 +218,11 @@ bool String::operator!=(const String& _other)
 
 String& String::operator=(const String& _str)
 {
-	//copy _str char array into this char array
-	str = new char[_str.Length() + 1];
-	strcpy_s(str, this->Length() + 1, _str.str);
-	
+	if (this != &_str) { // Check for self-assignment
+		delete[] str; // Deallocate old data
+		str = new char[_str.Length() + 1]; // Allocate new memory
+		strcpy_s(str, _str.Length() + 1, _str.str); // Copy data
+	}
 	return *this;
 		
 }

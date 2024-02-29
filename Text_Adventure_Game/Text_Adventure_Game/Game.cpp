@@ -16,28 +16,32 @@ Game::~Game()
 Input Game::convert(String str)
 {
 
-	if (str.EqualTo("north")) return north;
-	else if (str.EqualTo("east")) return east;
-	else if (str.EqualTo("west")) return west;
-	else if (str.EqualTo("south")) return south;
-	else if (str.EqualTo("quit")) return quit;
-
+	if (str == "north") return Input::north;
+	else if (str == ("east")) return east;
+	else if (str == ("west")) return west;
+	else if (str == ("south")) return south;
+	else if (str == ("quit")) return quit;
+	else return nul;
+	
 }
 
 void Game::Run()
 {
+	string stop = "";
+	
+	Input* input = new Input();
 	String* command = new String();
-	while (command->EqualTo("q") == 0)
+	while (stop != "q")
 	{
-		command->Replace(command->CStr(), "");
-		cout << command->CStr() << endl;
+		
+		//cout << command->CStr() << endl;
 		command->ReadFromConsole();
 		command->ToLower();
 		
 		
-		Input input = convert(*command);
+		/**input = convert(*command);
 
-		switch (input)
+		switch (*input)
 		{
 		case north:
 			cout << "North" << endl;
@@ -53,18 +57,30 @@ void Game::Run()
 			break;
 		case quit:
 			cout << "quit" << endl;
-			command->Replace(command->CStr(), "q");
-			cout << command->CStr() << endl;
-
+			stop = "q";
+			break;
+		case nul:
+			cout << "Please enter a valid command" << endl;
 			break;
 		default:
+			cout << "Please enter a valid command" << endl;
 			break;
-		}
-
+		}*/
+		
+		/*if (command != nullptr)
+		{
+			delete command;
+			command = nullptr;
+		}*/
+		
 	} 
+	/*delete command;
+	command = nullptr;*/
+	delete input;
+	input = nullptr;
+
 	exit(0);
-	delete command;
-	command = nullptr;
+	
 	
 }
 
