@@ -182,17 +182,17 @@ String& String::ReadFromConsole()
 {
 	//get the user input and input it into the char array
 	
-	const size_t maxInputSize = 100;
+	const size_t maxInputSize = 1024;
 	string input;
 	getline(cin, input);
 	if (input.size() > maxInputSize)
 	{
-		cout << "Please input a valid string" << endl;
+		cout << "Please input a valid command (1024 characters max)" << endl;
 		input = "";
 		getline(cin, input);
 	}
 	
-	*str = *input.c_str();
+	*this = input.c_str();
 	return *this;
 	
 }

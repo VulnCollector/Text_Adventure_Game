@@ -39,7 +39,7 @@ void Game::Run()
 		command->ToLower();
 		
 		
-		/**input = convert(*command);
+		*input = convert(*command);
 
 		switch (*input)
 		{
@@ -65,7 +65,7 @@ void Game::Run()
 		default:
 			cout << "Please enter a valid command" << endl;
 			break;
-		}*/
+		}
 		
 		/*if (command != nullptr)
 		{
