@@ -185,7 +185,7 @@ String& String::ReadFromConsole()
 	const size_t maxInputSize = 1024;
 	string input;
 	getline(cin, input);
-	if (input.size() > maxInputSize)
+	if (input.size() > maxInputSize) //if the input is longer than the max input size clear input and try again.
 	{
 		cout << "Please input a valid command (1024 characters max)" << endl;
 		input = "";
