@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "String.h"
 #include "Room.h"
+#include "Player.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -30,19 +31,16 @@ Input Game::convert(String str)
 
 void Game::Run()
 {
-	int playerXprev = 0;
-	int playerYprev = 0;
-	int playerX = 0;
-	int playerY = 0;
+	
 	int mapWidth = 5;
 	int mapHeight = 5;
 	string stop = "";
-	
+	Player* player = new Player();
 	Input* input = new Input();
 	String* command = new String();
 	Room* map = new Room(mapHeight, mapWidth);
-	map->Map[playerXprev * playerYprev] = '.';
-	map->Map[playerX * playerY] = '@';
+	map->Map[player->PlayerPrevX * player->PlayerPrevY] = '.';
+	map->Map[player->PlayerX * player->PlayerY] = '@';
 
 
 
@@ -75,16 +73,16 @@ void Game::Run()
 	while (stop != "q")
 	{
 		
-		(*map)(playerYprev, playerXprev) = '.';
-		(*map)(playerY, playerX) = '@';
-		playerXprev = playerX;
-		playerYprev = playerY;
+		(*map)(player->PlayerPrevY, player->PlayerPrevX) = '.';
+		(*map)(player->PlayerY, player->PlayerX) = '@';
+		player->PlayerPrevX = player->PlayerX;
+		player->PlayerPrevY = player->PlayerY;
 		
 		map->PrintMap();
 
 		
 
-		switch (map->RoomItem[playerY * mapWidth + playerX])
+		switch (map->RoomItem[player->PlayerY * mapWidth + player->PlayerX])
 		{
 		case 0:
 			cout << "No Item " << endl;
@@ -110,22 +108,26 @@ void Game::Run()
 		case north:
 			system("CLS");
 			cout << "North" << endl;
-			playerY--;
+			player->PlayerY--;
+			player->InBounds(mapWidth, mapHeight);
 			break;
 		case south:
 			system("CLS");
 			cout << "South" << endl;
-			playerY++;
+			player->PlayerY++;
+			player->InBounds(mapWidth, mapHeight);
 			break;
 		case east:
 			system("CLS");
 			cout << "East" << endl;
-			playerX++;
+			player->PlayerX++;
+			player->InBounds(mapWidth, mapHeight);
 			break;
 		case west:
 			system("CLS");
 			cout << "West" << endl;
-			playerX--;
+			player->PlayerX--;
+			player->InBounds(mapWidth, mapHeight);
 			break;
 		case quit:
 			cout << "quit" << endl;
@@ -145,6 +147,10 @@ void Game::Run()
 	
 	delete input;
 	input = nullptr;
+	delete player;
+	player = nullptr;
+	delete map;
+	map = nullptr;
 
 	exit(0);
 	
