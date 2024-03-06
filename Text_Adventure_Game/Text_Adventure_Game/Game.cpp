@@ -23,6 +23,7 @@ Input Game::convert(String str)
 	else if (str == ("west") || str == "w") return west;
 	else if (str == ("south") || str == "s") return south;
 	else if (str == ("quit") || str == "q") return quit;
+	else if (str == "use" || str == "u") return use;
 	else return nul;
 	
 }
@@ -77,12 +78,15 @@ void Game::Run()
 		(*map)(player->PlayerY, player->PlayerX) = '@';
 		player->PlayerPrevX = player->PlayerX;
 		player->PlayerPrevY = player->PlayerY;
+		player->PlayerPos = player->PlayerY * mapWidth + player->PlayerX;
 		
 		map->PrintMap();
 
-		
+		map->RoomDescription(player->PlayerPos);
 
-		switch (map->RoomItem[player->PlayerY * mapWidth + player->PlayerX])
+		map->Items[player->PlayerPos]->ItemDescription();
+
+		switch (map->RoomItem[player->PlayerPos])
 		{
 		case 0:
 			cout << "No Item " << endl;
@@ -108,30 +112,56 @@ void Game::Run()
 		case north:
 			system("CLS");
 			cout << "North" << endl;
-			player->PlayerY--;
-			player->InBounds(mapWidth, mapHeight);
+			if (player->PlayerY == 0)
+			{
+				
+			}
+			else
+			{
+				player->PlayerY--;
+			}
+			
+			
 			break;
 		case south:
 			system("CLS");
 			cout << "South" << endl;
-			player->PlayerY++;
-			player->InBounds(mapWidth, mapHeight);
+			if (player->PlayerY == mapHeight - 1) 
+			{
+				cout << "There is no door" << endl;
+			}
+			else
+			{
+				player->PlayerY++;
+			}
+			
 			break;
 		case east:
 			system("CLS");
 			cout << "East" << endl;
-			player->PlayerX++;
-			player->InBounds(mapWidth, mapHeight);
+			if (player->PlayerX == mapWidth - 1)
+			{
+				cout << "There is no door" << endl;
+			}
+			else player->PlayerX++;
+			
 			break;
 		case west:
 			system("CLS");
 			cout << "West" << endl;
-			player->PlayerX--;
-			player->InBounds(mapWidth, mapHeight);
+			if (player->PlayerX == 0)
+			{
+				cout << "There is no door" << endl;
+			}
+			else player->PlayerX--;
+			
 			break;
 		case quit:
 			cout << "quit" << endl;
 			stop = "q";
+			break;
+		case use:
+			map->Items[player->PlayerPos]->UseItem();
 			break;
 		case nul:
 			cout << "Please enter a valid command" << endl;

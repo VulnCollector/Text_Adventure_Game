@@ -8,6 +8,7 @@
 		east,
 		west,
 		quit,
+		use,
 		nul
 	};
 
