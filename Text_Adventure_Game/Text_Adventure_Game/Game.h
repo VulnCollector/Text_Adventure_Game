@@ -1,5 +1,6 @@
 #pragma once
 #include "string.h"
+#include "Room.h"
 
 	enum Input
 	{
@@ -9,6 +10,7 @@
 		west,
 		quit,
 		use,
+		spell,
 		nul
 	};
 
@@ -20,6 +22,8 @@ public:
 	~Game();
 
 	void Run();
+
+	void PrintHUD(Room map);
 
 
 	Input convert(String str);

@@ -5,6 +5,7 @@
 #include "Item.h"
 #include "Cat.h"
 #include "Lamp.h"
+#include "Donuts.h"
 using namespace std;
 
 class Room
@@ -28,6 +29,8 @@ public:
 
     void RoomDescription(int i) const;
 
+    void RoomDescShort(int i) const;
+
     void AddDesc();
 
 
@@ -40,7 +43,7 @@ public:
     vector<int> RoomItem;
     vector<Item*> Items;
     vector<string> RoomDesc;
-    vector<string> Desc = { "the room is pretty much empty. ", "a water fountain in the middle of the room. ", "a dining table runs almost the entire length of the room. ", "there are various pictures of people hanging on the walls. ", "the room is filled with plants of various types. ", "the room is full of corpses and bones. "};
+    vector<string> Desc = { "room is pretty much empty. ", "room has a water fountain in the middle. ", "room has a dining table that is almost the entire length of the room. ", "room has various pictures of people hanging on the walls. ", "room is filled with plants of various types. ", "room is full of corpses and bones. "};
 
 };
 

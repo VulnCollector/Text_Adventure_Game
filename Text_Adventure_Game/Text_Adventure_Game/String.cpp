@@ -166,11 +166,7 @@ String& String::Replace(const String& _find, const String& _replace)
 	{
 		string Replace = string(str, str + startPos) + _replace.CStr() + string(str + startPos + _find.Length());
 
-		char* newStr = new char[Replace.length() + 1];
-
-		strcpy_s(newStr,strlen(newStr + 1), Replace.c_str());
-
-		str = newStr;
+		*this = Replace.c_str();
 
 		startPos += _replace.Length();
 	}

@@ -12,7 +12,7 @@ Item::~Item()
 
 void Item::ItemDescription() const
 {
-	cout << "No Item" << endl;
+	cout << "No Item" << endl; 
 }
 
 void Item::UseItem()

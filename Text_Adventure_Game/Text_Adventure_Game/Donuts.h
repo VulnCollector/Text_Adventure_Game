@@ -1,16 +1,14 @@
 #pragma once
 #include "Item.h"
-class Cat : public Item
+class Donuts :  public Item
 {
 public:
-	Cat();
-	~Cat();
+	Donuts();
+	~Donuts();
 
 	void ItemDescription() const;
 	void UseItem();
-	
 
-	bool purring;
-
+	int DonutsLeft;
 };
 

@@ -12,6 +12,7 @@ Lamp::~Lamp()
 
 void Lamp::ItemDescription() const
 {
+	//print description of Lamp to console with extras depending if turnedOn is true or false
 	cout << "a lamp. ";
 	if (this->turnedOn)
 	{
@@ -25,6 +26,7 @@ void Lamp::ItemDescription() const
 
 void Lamp::UseItem()
 {
+	//make turnedOn true or false to turn the lamp on or off
 	if (this->turnedOn)
 	{
 		cout << "You turn the lamp off." << endl;
@@ -32,7 +34,7 @@ void Lamp::UseItem()
 	}
 	else
 	{
-		cout << "You turn the lamp on.";
+		cout << "You turn the lamp on." << endl;
 		this->turnedOn = true;
 	}
 }
