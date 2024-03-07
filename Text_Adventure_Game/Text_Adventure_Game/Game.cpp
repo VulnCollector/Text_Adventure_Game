@@ -60,6 +60,7 @@ void Game::Run()
 		}
 		
 		//get player command and convert it to lowercase
+		cout << "Input Command: " << endl;
 		command->ReadFromConsole();
 		command->ToLower();
 		
@@ -199,7 +200,7 @@ void Game::Run()
 void Game::PrintHUD(Room map)
 {
 	map.PrintMap();
-	cout << "n - north  |  s - south  |  e - east  |  w - west  |  u - use  |  q - quit" << '\n' << endl;
+	cout << "n - north  |  s - south  |  e - east  |  w - west  |  u - use  |  f - spell  |  q - quit  |" << '\n' << endl;
 }
 
 
