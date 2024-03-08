@@ -31,7 +31,7 @@ string Player::SpellFind(String spell)
 	check.erase(0, pos + 1); // remove anything before and including the first space in the player input
 	sort(this->Spells.begin(), this->Spells.end()); //sort player spells list
 
-	if (spell.Length() == 0 || spell.Find("list") == 0) //if player inputs nothing or list after calling SpellFind print out the list of spells
+	if (check.length() == 0 || spell.Find("list") != -1 || check == "f" || check == "spell") //if player inputs nothing or list after calling SpellFind print out the list of spells
 	{
 		for (int i = 0; i < this->Spells.size(); i++)
 		{

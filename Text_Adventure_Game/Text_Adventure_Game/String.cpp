@@ -176,7 +176,7 @@ String& String::Replace(const String& _find, const String& _replace)
 
 String& String::ReadFromConsole()
 {
-	//get the user input and input it into the char array
+	
 	
 	const size_t maxInputSize = 1024;
 	string input;
